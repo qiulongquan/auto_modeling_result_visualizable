@@ -147,23 +147,6 @@
 │   ├── gp_minimize.py
 │   ├── grid_search.py
 │   ├── hyper_optimize_main_process.py
-│   ├── model_and_record
-│   │   ├── baseline
-│   │   │   ├── base_score_df.pkl
-│   │   │   ├── knn
-│   │   │   │   └── knn.pkl
-│   │   │   ├── randomforest
-│   │   │   │   └── randomforest.pkl
-│   │   │   └── svr
-│   │   │       └── svr.pkl
-│   │   └── grid_search
-│   │       ├── KNN
-│   │       │   └── KNN.pkl
-│   │       ├── RandomForestRegressor
-│   │       │   └── RandomForestRegressor.pkl
-│   │       ├── SVR
-│   │       │   └── SVR.pkl
-│   │       └── gridsearch_score_df.pkl
 │   ├── optuna_optimizer.py
 │   └── random_search.py
 ├── 结论.txt
