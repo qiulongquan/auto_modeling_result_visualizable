@@ -148,13 +148,12 @@ def bo_tpe_ANN(X, y):
 
     def objective(params):
         params = {
-            "optimizer": str(params['optimizer']),
             "activation": str(params['activation']),
             "loss": str(params['loss']),
             'batch_size': abs(int(params['batch_size'])),
             'neurons': abs(int(params['neurons'])),
             'epochs': abs(int(params['epochs'])),
-            # 'patience': abs(int(params['patience']))
+            'learning_rate': abs(float(params['learning_rate']))
         }
         clf = KerasRegressor(build_fn=ANN, **params, verbose=verbose)
         score = -np.mean(
@@ -162,17 +161,15 @@ def bo_tpe_ANN(X, y):
 
         return {'loss': score, 'status': STATUS_OK}
 
-    space_optimizer = ['adam', 'rmsprop']
     space_activation = ['relu', 'tanh']
     space_loss = ['mse', 'mae']
     space = {
-        "optimizer": hp.choice('optimizer', space_optimizer),
         "activation": hp.choice('activation', space_activation),
         "loss": hp.choice('loss', space_loss),
-        'batch_size': hp.quniform('batch_size', 16, 64, 16),
+        'batch_size': hp.quniform('batch_size', 32, 128, 32),
         'neurons': hp.quniform('neurons', 256, 1024, 256),
-        'epochs': hp.quniform('epochs', 20, 50, 10),
-        # 'patience': hp.quniform('patience', 3, 20, 3),
+        'epochs': hp.quniform('epochs', 30, 60, 10),
+        'learning_rate': hp.uniform('learning_rate', 1e-5, 1e-2)
     }
 
     trials_ann = Trials()
@@ -187,12 +184,12 @@ def bo_tpe_ANN(X, y):
     print("程序执行时间（秒）:{}".format(process_time_ann))
     print("最佳超参数值集合:", best_ann)
     best_params_ann = {
-        'optimizer': space_optimizer[best_ann['optimizer']],
         'activation': space_activation[best_ann['activation']],
         'loss': space_loss[best_ann['loss']],
         'batch_size': int(best_ann['batch_size']),
         'neurons': int(best_ann['neurons']),
-        'epochs': int(best_ann['epochs'])
+        'epochs': int(best_ann['epochs']),
+        'learning_rate': float(best_ann['learning_rate'])
     }
     model_bo_tpe_ann = ANN(**best_params_ann)
     save_model_object(model_bo_tpe_ann, 'BO-TPE', 'ANN', 'ANN')

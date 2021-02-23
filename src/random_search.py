@@ -98,13 +98,11 @@ def rs_knn(X, y):
 
 def rs_ANN(X, y):
     rf_params = {
-        'optimizer': ['adam'],
         'activation': ['relu', 'tanh'],
         'loss': ['mse'],
-        # 'batch_size': [16, 32, 64],
+        'batch_size': [32, 64, 128],
         'neurons': sp_randint(256, 1024),
-        'epochs': [10, 20, 30, 50],
-        # 'epochs':[20,50,100,200],
+        'epochs': [30, 50, 80]
         # 'patience': sp_randint(3, 20)
     }
     n_iter_search = 10

@@ -94,10 +94,9 @@ def grid_knn(X, y):
 
 def grid_ANN(X, y):
     ann_params = {
-        "optimizer": ['adam'],
         "neurons": [256, 512, 1028, 2048],
-        # "batch_size": [16,32],
-        # "epochs": [20, 40, 60],
+        "batch_size": [64, 128, 256],
+        "epochs": [40, 60, 80],
         # "activation": ['sigmoid', 'relu', 'tanh'],
         # "patience": [2, 5],
         "loss": ['mse']

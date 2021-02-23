@@ -21,7 +21,7 @@ from src.random_search import rs_RandomForestRegressor, rs_svr, rs_knn, rs_ANN
 from src.bo_gp import bo_RandomForestRegressor, bo_svr, bo_knn, bo_ANN
 from src.gp_minimize import gpminimize_RandomForestRegressor, gpminimize_svr, gpminimize_knn
 from src.bo_tpe import bo_tpe_knn, bo_tpe_RandomForestRegressor, bo_tpe_svr, bo_tpe_ANN, bo_tpe_ngb, bo_tpe_lightgbm
-from src.optuna_optimizer import optuna_GradientBoostingRegressor, optuna_knn, optuna_lightgbm, optuna_RandomForestRegressor, optuna_svr, optuna_xgb,optuna_ANN
+from src.optuna_optimizer import optuna_GradientBoostingRegressor, optuna_knn, optuna_lightgbm, optuna_RandomForestRegressor, optuna_svr, optuna_xgb, optuna_ANN
 from src.common.save_model_and_result_record import save_model_object, save_record_object, load_model_object, load_record_object
 from src.common.collection_result_process import collection_result_process, dataframe_sort_show
 from time import sleep
@@ -407,12 +407,13 @@ def optuna_model_group():
     log_output(message)
 
     # # ann模型调用
-    # optuna_ann_score, process_time_ann,best_params_ann = optuna_ANN(X, y)
-    # model_name = 'ANN'
-    # hyper_optimize = 'Optuna'
-    # message = "model_name: {}, hyper_optimize: {}, optuna_ann_score: {}, process_time_ann: {},best_params_ann:{}".format(
-    #     model_name, hyper_optimize, optuna_ann_score, process_time_ann,best_params_ann)
-    # log_output(message)
+    optuna_ann_score, process_time_ann, best_params_ann = optuna_ANN(X, y)
+    model_name = 'ANN'
+    hyper_optimize = 'Optuna'
+    message = "model_name: {}, hyper_optimize: {}, optuna_ann_score: {}, process_time_ann: {},best_params_ann:{}".format(
+        model_name, hyper_optimize, optuna_ann_score, process_time_ann,
+        best_params_ann)
+    log_output(message)
 
     # GradientBoostingRegressor模型调用
     optuna_gbr_score, process_time_gbr, best_params_gbr = optuna_GradientBoostingRegressor(
@@ -443,13 +444,14 @@ def optuna_model_group():
     log_output(message)
 
     score = [
-        'Optuna_score', optuna_rf_score, optuna_gbr_score, 0, optuna_svr_score,
-        optuna_knn_score, optuna_xgb_score, optuna_lgb_score
+        'Optuna_score', optuna_rf_score, optuna_gbr_score, optuna_ann_score,
+        optuna_svr_score, optuna_knn_score, optuna_xgb_score, optuna_lgb_score
     ]
 
     process_time = [
-        'Optuna_process_time', process_time_rf, process_time_gbr, 0,
-        process_time_svr, process_time_knn, process_time_xgb, process_time_lgb
+        'Optuna_process_time', process_time_rf, process_time_gbr,
+        process_time_ann, process_time_svr, process_time_knn, process_time_xgb,
+        process_time_lgb
     ]
     Optuna_score = [score, process_time]
     Optuna_score_df = pd.DataFrame(data=Optuna_score,

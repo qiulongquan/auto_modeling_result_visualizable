@@ -1,0 +1,6 @@
+结论：
+1.使用BO-TPE优化器加NBoost，LightGBM模型可以获得非常好的结果和比较少的训练时间。
+2.神经网络(ANN)在不同的优化器下有明显的变化，在Optuna优化器下有非常不错的效果。
+3.传统模型在不同的优化器下效果基本差不多，变化不明显。
+3.NBoost，LightGBM，RandomForest3个传统模型可以重点考虑。
+4.优化器方面Optuna，BO-TPE重点考虑。

@@ -94,13 +94,11 @@ def bo_knn(X, y):
 
 def bo_ANN(X, y):
     rf_params = {
-        'optimizer': ['adam'],
         'activation': ['relu', 'tanh'],
         'loss': ['mse'],
-        # 'batch_size': [16, 32, 64],
+        'batch_size': [32, 64, 128],
         'neurons': Integer(256, 1024),
-        'epochs': [10, 20, 30, 50],
-        #'epochs':[20,50,100,200],
+        'epochs': [20, 30, 50, 60]
         # 'patience': Integer(3, 20)
     }
     starttime = datetime.datetime.now()

@@ -18,7 +18,7 @@ CHART_FILE_NAME_3 = "models_MSE_sort_1.png"
 X, y = datasets.load_boston(return_X_y=True)
 
 # 模型使用的种类范围
-RANGE_MIN = 6
+RANGE_MIN = 1
 RANGE_MAX = 8
 
 # 模型保存的子目录定义

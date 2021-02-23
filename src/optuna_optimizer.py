@@ -164,19 +164,20 @@ def optuna_ANN(X, y):
 
     def objective(trial):
         params = {
-            "optimizer": trial.suggest_categorical("optimizer", ['Adam']),
-            # "batch_size":
-            # trial.suggest_categorical("batch_size", [16, 32, 64]),
-            #         "loss":trial.suggest_categorical("loss",['mse','mae']),
-            'neurons': trial.suggest_int("neurons", 256, 1024, step=128),
-            'epochs': trial.suggest_int("epochs", 20, 50, step=10),
+            "learning_rate": trial.suggest_loguniform('learning_rate', 1e-5,
+                                                      1e-2),
+            "batch_size": trial.suggest_categorical("batch_size", [128, 256]),
+            "activation": trial.suggest_categorical("activation",
+                                                    ['relu', 'tanh']),
+            'neurons': trial.suggest_int("neurons", 512, 2048, step=128),
+            'epochs': trial.suggest_int("epochs", 40, 100, step=10),
         }
 
         clf = KerasRegressor(build_fn=ANN, **params, verbose=verbose)
         score = cross_val_score(clf,
                                 X,
                                 y,
-                                cv=2,
+                                cv=3,
                                 scoring='neg_mean_squared_error')
         obtuna_ann_score = -score.mean()
         # 官网optuna都是使用sklearn里面定义好的模型，自定义模型要想使用optuna比较复杂。
@@ -196,7 +197,7 @@ def optuna_ANN(X, y):
     print("ANN MSE score:%.4f" % optuna_ann_mse_score)
     print("程序执行时间（秒）:{}".format(optuna_ann_time))
     print("最佳超参数值集合:", study_ann.best_params)
-    model_optuna_ann = ANN(**study_ann.best_params_)
+    model_optuna_ann = ANN(**study_ann.best_params)
     save_model_object(model_optuna_ann, 'Optuna', 'ANN', 'ANN')
     return optuna_ann_mse_score, optuna_ann_time, study_ann.best_params
 
