@@ -5,7 +5,7 @@ from keras.models import Sequential, Model
 from keras.layers import Dense, Input, Dropout
 from keras.callbacks import EarlyStopping
 from keras.optimizers import Adam
-from basic_config import X, y, verbose
+from src.basic_config import X, y, verbose
 
 
 def ANN(learning_rate=0.01,

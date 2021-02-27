@@ -14,12 +14,12 @@ from hyperopt import hp, fmin, tpe, STATUS_OK, Trials, space_eval
 from hyperopt.pyll.base import scope
 from sklearn.ensemble import GradientBoostingRegressor
 from keras.wrappers.scikit_learn import KerasRegressor
-from ANN_model import ANN
+from src.ANN_model import ANN
 import datetime
 import numpy as np
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import median_absolute_error, mean_absolute_error, mean_squared_error
-from basic_config import verbose
+from src.basic_config import verbose
 
 
 def grid_RandomForestRegressor(X, y):
@@ -94,11 +94,11 @@ def grid_knn(X, y):
 
 def grid_ANN(X, y):
     ann_params = {
-        "neurons": [256, 512, 1028, 2048],
-        "batch_size": [64, 128, 256],
-        "epochs": [40, 60, 80],
+        "neurons": [512, 1028],
+        "batch_size": [128],
+        "epochs": [60, 80],
         # "activation": ['sigmoid', 'relu', 'tanh'],
-        # "patience": [2, 5],
+        "patience": [3],
         "loss": ['mse']
     }
     starttime = datetime.datetime.now()

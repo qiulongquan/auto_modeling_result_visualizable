@@ -9,7 +9,7 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from src.common.save_model_and_result_record import save_model_object, save_record_object
 from keras.wrappers.scikit_learn import KerasRegressor
-from ANN_model import ANN
+from src.ANN_model import ANN
 import optuna
 import lightgbm as lgb
 import sklearn.datasets

@@ -12,8 +12,8 @@ from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from src.common.save_model_and_result_record import save_model_object, save_record_object
 from random import randrange as sp_randrange
 from keras.wrappers.scikit_learn import KerasRegressor
-from ANN_model import ANN
-from basic_config import verbose
+from src.ANN_model import ANN
+from src.basic_config import verbose
 import datetime
 import scipy.stats as stats
 

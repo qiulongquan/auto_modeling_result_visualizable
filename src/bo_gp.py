@@ -11,8 +11,8 @@ from skopt import Optimizer
 from skopt import BayesSearchCV
 from skopt.space import Real, Categorical, Integer
 from keras.wrappers.scikit_learn import KerasRegressor
-from ANN_model import ANN
-from basic_config import verbose
+from src.ANN_model import ANN
+from src.basic_config import verbose
 import datetime
 
 

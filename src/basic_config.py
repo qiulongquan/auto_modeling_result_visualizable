@@ -31,7 +31,7 @@ BO_TPE = 'BO-TPE'
 Optuna = 'Optuna'
 
 # 中文字符显示字符集path定义
-font_path = os.path.join(os.getcwd(), 'src', 'common', 'msyh.ttc')
+font_path = os.path.join(os.getcwd(),'src', 'common', 'msyh.ttc')
 
 # 汇总数据path定义
 all_result_file_path = 'model_and_record/all_result.pkl'

@@ -113,7 +113,6 @@ def collection_result_process(range_max):
     # print(transform_df)
     # score列格式转换，转换成float
     transform_df['score'] = transform_df['score'].astype('float')
-    print(transform_df.info())
     # 整理后的数据，画图表示
     sns.set(style="whitegrid", color_codes=True)
     fig = plt.figure(figsize=(16, 8))

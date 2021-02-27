@@ -29,6 +29,7 @@ from tqdm import tqdm
 import pandas as pd
 import time
 import pickle
+import datetime
 
 
 def baseline_model_group():
@@ -471,6 +472,7 @@ if __name__ == '__main__':
         print("waiting...")
         ptvsd.enable_attach(address=("0.0.0.0", 3000))
         ptvsd.wait_for_attach()
+    start_time=datetime.datetime.now()
     print("data shape check:", X.shape, y.shape)
     for i in tqdm(range(RANGE_MIN, RANGE_MAX)):
         if i == 1:
@@ -527,7 +529,10 @@ if __name__ == '__main__':
     print(
         "\n====================================================数据汇总处理开始===================================================="
     )
-    # 收集所有保存的MSE分数统计结果，并汇总,然后显示图表
+#     # 收集所有保存的MSE分数统计结果，并汇总,然后显示图表
     transform_df = collection_result_process(RANGE_MAX)
-    # MSE分数排序并显示最优模型和优化方式图表
+#     # MSE分数排序并显示最优模型和优化方式图表
     dataframe_sort_show(transform_df)
+    end_time=datetime.datetime.now()
+    process_time=end_time-start_time
+    print("程序执行总时间（秒）:{}".format(process_time))
