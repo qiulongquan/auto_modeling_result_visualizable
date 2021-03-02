@@ -21,10 +21,12 @@ from src.random_search import rs_RandomForestRegressor, rs_svr, rs_knn, rs_ANN
 from src.bo_gp import bo_RandomForestRegressor, bo_svr, bo_knn, bo_ANN
 from src.gp_minimize import gpminimize_RandomForestRegressor, gpminimize_svr, gpminimize_knn
 from src.bo_tpe import bo_tpe_knn, bo_tpe_RandomForestRegressor, bo_tpe_svr, bo_tpe_ANN, bo_tpe_ngb, bo_tpe_lightgbm
-from src.optuna_optimizer import optuna_GradientBoostingRegressor, optuna_knn, optuna_lightgbm, optuna_RandomForestRegressor, optuna_svr, optuna_xgb, optuna_ANN
+from src.optuna_optimizer import (optuna_GradientBoostingRegressor, optuna_knn,
+                                  optuna_lightgbm,
+                                  optuna_RandomForestRegressor, optuna_svr,
+                                  optuna_xgb, optuna_ANN)
 from src.common.save_model_and_result_record import save_model_object, save_record_object, load_model_object, load_record_object
 from src.common.collection_result_process import collection_result_process, dataframe_sort_show
-from time import sleep
 from tqdm import tqdm
 import pandas as pd
 import time
@@ -472,7 +474,7 @@ if __name__ == '__main__':
         print("waiting...")
         ptvsd.enable_attach(address=("0.0.0.0", 3000))
         ptvsd.wait_for_attach()
-    start_time=datetime.datetime.now()
+    start_time = datetime.datetime.now()
     print("data shape check:", X.shape, y.shape)
     for i in tqdm(range(RANGE_MIN, RANGE_MAX)):
         if i == 1:
@@ -529,10 +531,10 @@ if __name__ == '__main__':
     print(
         "\n====================================================数据汇总处理开始===================================================="
     )
-#     # 收集所有保存的MSE分数统计结果，并汇总,然后显示图表
+    #     # 收集所有保存的MSE分数统计结果，并汇总,然后显示图表
     transform_df = collection_result_process(RANGE_MAX)
-#     # MSE分数排序并显示最优模型和优化方式图表
+    #     # MSE分数排序并显示最优模型和优化方式图表
     dataframe_sort_show(transform_df)
-    end_time=datetime.datetime.now()
-    process_time=end_time-start_time
+    end_time = datetime.datetime.now()
+    process_time = end_time - start_time
     print("程序执行总时间（秒）:{}".format(process_time))
